@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import List, Tuple, Any, Set
+from typing import List, Tuple, Any
 
 
 # 1. Write a function to return a list of the first n numbers in the Fibonacci string.
@@ -66,8 +66,9 @@ def replace_below_diagonal(matrix: List[List[int]]) -> List[List[int]]:
     return matrix
 
 
-# 6. Write a function that receives as a parameter a variable number of lists and a whole number x. Return a list containing the items that appear exactly x times in the incoming lists.
-# Example: For the [1,2,3], [2,3,4],[4,5,6], [4,1, "test"] and x = 2 lists [1,2,3 ] # 1 is in list 1 and 4, 2 is in list 1 and 2, 3 is in lists 1 and 2.
+# 6. Write a function that receives as a parameter a variable number of lists and a whole number x. Return a list
+# containing the items that appear exactly x times in the incoming lists. Example: For the [1,2,3], [2,3,4],[4,5,6],
+# [4,1, "test"] and x = 2 lists [1,2,3 ] # 1 is in list 1 and 4, 2 is in list 1 and 2, 3 is in lists 1 and 2.
 
 def items_appearing_x_times(x: int, *lists: List[Any]) -> List[Any]:
     all_items = [item for sublist in lists for item in sublist]
