@@ -285,9 +285,9 @@ print(f"Savings Account Interest: {savings_interest}")
 print(f"Checking Account Balance: {checking_account.balance} \n")
 
 # Ex 3
-car = Car("Toyota", "Camry", 2022, 30.0)
-motorcycle = Motorcycle("Harley-Davidson", "Street 750", 2022, 40.0)
-truck = Truck("Ford", "F-150", 2022, 10000.0)
+car = Car("Toyota", "Aygo", 2022, 30.0)
+motorcycle = Motorcycle("Yamaha", "Kawasaki", 2020, 40.0)
+truck = Truck("Ford", "F-150", 2018, 10000.0)
 car_mileage = car.calculate_mileage()
 motorcycle_mileage = motorcycle.calculate_mileage()
 truck_towing_capacity = truck.calculate_towing_capacity()
@@ -296,9 +296,9 @@ print(f"{motorcycle.display_info()} - Mileage: {motorcycle_mileage} MPG")
 print(f"{truck.display_info()} - Towing Capacity: {truck_towing_capacity} lbs \n")
 
 # Ex 4
-manager = Manager("John Doe", 101, 80000.0, "Sales")
-engineer = Engineer("Alice Smith", 102, 70000.0, "Python")
-salesperson = Salesperson("Bob Johnson", 103, 60000.0, 1000000.0)
+manager = Manager("Maria Catavencu", 101, 80000.0, "Sales")
+engineer = Engineer("Marius Ion", 102, 70000.0, "Python")
+salesperson = Salesperson("Denisa Lica", 103, 60000.0, 1000000.0)
 manager_bonus = manager.calculate_bonus()
 engineer_code = engineer.code()
 salesperson_commission = salesperson.calculate_commission()
@@ -307,8 +307,8 @@ print(f"{engineer.display_info()} - {engineer_code}")
 print(f"{salesperson.display_info()} - Commission: ${salesperson_commission} \n")
 
 # Ex 5
-mammal = Mammal("Lion", "Panthera leo", "Golden")
-bird = Bird("Eagle", "Aquila chrysaetos", 2.5)
+mammal = Mammal("Leu", "Panthera Leo", "Auriu")
+bird = Bird("Vultur", "Aquila chrysaetos", 2.5)
 fish = Fish("Clownfish", "Amphiprioninae", "Orange")
 mammal_birth = mammal.give_birth()
 bird_flight = bird.fly()
@@ -318,7 +318,7 @@ print(f"{bird.name} ({bird.species}) - Wing span: {bird.wing_span} meters, {bird
 print(f"{fish.name} ({fish.species}) - Scale color: {fish.scale_color}, {fish_swim} \n")
 
 # Ex 6
-book = Book("The Great Gatsby", "F123.45", "F. Scott Fitzgerald", "Fiction")
+book = Book("Moara cu noroc", "F123.45", "Ioan Slavici", "Epic")
 dvd = DVD("Inception", "D456.78", "Christopher Nolan", 150)
 magazine = Magazine("National Geographic", "M789.01", 123)
 book_check_out = book.check_out()
