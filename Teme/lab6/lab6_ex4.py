@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def count_files_by_extension(directory):
+def count_files_by_extension(directory: str) -> None:
     try:
         if not os.path.exists(directory):
             raise FileNotFoundError(f"Directory not found: {directory}")

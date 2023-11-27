@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def calculate_total_size(directory):
+def calculate_total_size(directory: str) -> None:
     try:
         if not os.path.exists(directory):
             raise FileNotFoundError(f"Directory not found: {directory}")

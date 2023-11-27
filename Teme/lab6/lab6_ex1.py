@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def read_files_in_directory(directory, extension):
+def read_files_in_directory(directory: str, extension: str) -> None:
     try:
         if not os.path.exists(directory):
             raise FileNotFoundError(f"Directory not found: {directory}")

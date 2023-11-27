@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def rename_files_with_prefix(directory):
+def rename_files_with_prefix(directory: str) -> None:
     try:
         if not os.path.exists(directory):
             raise FileNotFoundError(f"Directory not found: {directory}")
