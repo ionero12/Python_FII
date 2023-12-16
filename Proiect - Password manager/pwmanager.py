@@ -1,3 +1,4 @@
+import sqlite3
 import sys
 
 import cryptocode
@@ -27,10 +28,10 @@ def decriptare_parola(parola_criptata):
 
 # Functie pentru adaugarea unei noi parole
 def adaugare_parola(website, username, parola, cursor):
-    # Verificare dacă site-ul există deja
-    cursor.execute("SELECT * FROM parole WHERE website=?", (website))
+    cursor.execute("SELECT * FROM parole WHERE website=?", (website,))
+    entry = cursor.fetchone()
 
-    if cursor.fetchone():
+    if entry:
         # Actualizare parola
         parola_criptata = criptare_parola(parola)
         cursor.execute("UPDATE parole SET username=?, parola=? WHERE website=?", (username, parola_criptata, website))
@@ -45,7 +46,7 @@ def adaugare_parola(website, username, parola, cursor):
 
 # Functie pentru obtinerea unei parole
 def obtinere_parola(website, cursor):
-    cursor.execute("SELECT * FROM parole WHERE website=?", (website))
+    cursor.execute("SELECT * FROM parole WHERE website=?", (website,))
     entry = cursor.fetchone()
 
     if entry:
@@ -57,8 +58,12 @@ def obtinere_parola(website, cursor):
 
 # Functie pentru stergerea unei parole
 def stergere_parola(website, cursor):
-    cursor.execute("DELETE FROM parole WHERE website=?", (website))
-    print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
+    cursor.execute("DELETE FROM parole WHERE website=?", (website,))
+    entry = cursor.fetchone()
+    if entry:
+        print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
+    else:
+        print(f"Nu exista o parola pentru website-ul {website}")
 
 
 # Functie pentru listarea tuturor parolelor
@@ -69,12 +74,27 @@ def listare_parole(cursor):
     if entries:
         print("Parolele stocate:")
         for entry in entries:
-            parola_decriptata = decriptare_parola(entry[3])
-            print(f" Website-ul {entry[1]} are username-ul {entry[2]} si parola: {parola_decriptata}")
+            id, website, username, parola_criptata = entry
+            parola_decriptata = decriptare_parola(parola_criptata)
+            print(f" Website-ul {website} are username-ul {username} si parola {parola_decriptata}")
     else:
         print("Nu exista parole stocate.")
 
+
 def conectare_la_baza_de_date():
+    conn = sqlite3.connect('pwmanager.db')
+    cursor = conn.cursor()
+
+    query = '''
+                CREATE TABLE IF NOT EXISTS parole (
+                    id INTEGER PRIMARY KEY,
+                    website TEXT,
+                    username TEXT,
+                    parola TEXT
+                )
+            '''
+    cursor.execute(query)
+    return conn, cursor
 
 
 def main():
@@ -86,7 +106,7 @@ def main():
 
     conn, cursor = conectare_la_baza_de_date()
 
-    # Executare operații în funcție de argumentele primite
+    # Executare operatii în functie de argumentele primite
     if operatie == '-add':
         website, username, parola = sys.argv[3:]
         adaugare_parola(website, username, parola, cursor)
