@@ -43,7 +43,16 @@ def adaugare_parola(website, username, parola, cursor):
         print(f"Username-ul si parola pentru website-ul {website} au fost adaugate cu succes!")
 
 
+# Functie pentru obtinerea unei parole
 def obtinere_parola(website, cursor):
+    cursor.execute("SELECT * FROM parole WHERE website=?", (website))
+    entry = cursor.fetchone()
+
+    if entry:
+        parola_decriptata = decriptare_parola(entry[3])
+        print(f"Parola pentru website-ul {website} este {parola_decriptata}")
+    else:
+        print(f"Nu exista o parola pentru {website}")
 
 
 def stergere_parola(website, cursor):
