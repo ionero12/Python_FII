@@ -61,8 +61,18 @@ def stergere_parola(website, cursor):
     print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
 
 
+# Functie pentru listarea tuturor parolelor
 def listare_parole(cursor):
+    cursor.execute("SELECT * FROM parole")
+    entries = cursor.fetchall()
 
+    if entries:
+        print("Parolele stocate:")
+        for entry in entries:
+            parola_decriptata = decriptare_parola(entry[3])
+            print(f" Website-ul {entry[1]} are username-ul {entry[2]} si parola: {parola_decriptata}")
+    else:
+        print("Nu exista parole stocate.")
 
 def conectare_la_baza_de_date():
 
