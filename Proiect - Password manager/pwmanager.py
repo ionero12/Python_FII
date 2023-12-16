@@ -1,5 +1,5 @@
-import sqlite3
 import sys
+
 import cryptocode
 
 parola_master = 'ionela2002'
@@ -24,24 +24,35 @@ def decriptare_parola(parola_criptata):
     parola_decriptata = cryptocode.decrypt(parola_criptata, parola_master)
     return parola_decriptata
 
-def adaugare_parola(website, username, parola, cursor):
 
+# Functie pentru adaugarea unei noi parole
+def adaugare_parola(website, username, parola, cursor):
+    # Verificare dacă site-ul există deja
+    cursor.execute("SELECT * FROM parole WHERE website=?", (website,))
+
+    if cursor.fetchone():
+        # Actualizare parola
+        parola_criptata = criptare_parola(parola)
+        cursor.execute("UPDATE parole SET username=?, parola=? WHERE website=?", (username, parola_criptata, website))
+        print(f"Username-ul si parola pentru website-ul {website} au fost updatate cu succes!")
+    else:
+        # Adaugare parola noua
+        parola_criptata = criptare_parola(parola)
+        cursor.execute('INSERT INTO parole (website, username, parola) VALUES(?,?,?)',
+                       (website, username, parola_criptata,))
+        print(f"Username-ul si parola pentru website-ul {website} au fost adaugate cu succes!")
 
 
 def obtinere_parola(website, cursor):
 
 
-
 def stergere_parola(website, cursor):
-
 
 
 def listare_parole(cursor):
 
 
-
 def conectare_la_baza_de_date():
-
 
 
 def main():
