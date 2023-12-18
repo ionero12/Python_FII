@@ -59,11 +59,7 @@ def obtinere_parola(website, cursor):
 # Functie pentru stergerea unei parole
 def stergere_parola(website, cursor):
     cursor.execute("DELETE FROM parole WHERE website=?", (website,))
-    entry = cursor.fetchone()
-    if entry:
-        print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
-    else:
-        print(f"Nu exista o parola pentru website-ul {website}")
+    print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
 
 
 # Functie pentru listarea tuturor parolelor
