@@ -60,6 +60,7 @@ def obtinere_parola(website, cursor):
 def stergere_parola(website, cursor):
     cursor.execute("SELECT * FROM parole WHERE website=?", (website,))
     entry = cursor.fetchone()
+
     if entry:
         cursor.execute("DELETE FROM parole WHERE website=?", (website,))
         print(f"Parola pentru website-ul {website} a fost stearsa cu succes!")
